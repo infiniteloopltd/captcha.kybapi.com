@@ -10,7 +10,8 @@
             // Function to execute when the button is clicked
             $("#validateButton").click(function() {
                 grecaptcha.ready(function() {
-                    grecaptcha.execute('6LciI0QpAAAAAEocGXwQxLoUYuNJYdDNy3N2HEwm', { action: 'validate' }).then(function(token) {
+                    grecaptcha.execute('6LciI0QpAAAAAEocGXwQxLoUYuNJYdDNy3N2HEwm', { action: 'validate' }).then(function (token) {
+                        $("#tokenText").text(token);
                         // Send an AJAX request to validate the token
                         $.ajax({
                             url: '/validate.aspx?token=' + token,
@@ -34,6 +35,9 @@
 <body>
 <h1>reCAPTCHA v3 Validation</h1>
 <button id="validateButton">Validate reCAPTCHA</button>
+<hr/>
+<div id="tokenText"></div>
+<hr />
 <div id="responseText"></div>
 </body>
 </html>
