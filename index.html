@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>reCAPTCHA v3 Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+    <script>
+        $(document).ready(function() {
+            // Replace 'YOUR_SITE_KEY' with your reCAPTCHA v3 site key
+
+            // Function to execute when the button is clicked
+            $("#validateButton").click(function() {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LciI0QpAAAAAEocGXwQxLoUYuNJYdDNy3N2HEwm', { action: 'validate' }).then(function(token) {
+                        // Send an AJAX request to validate the token
+                        $.ajax({
+                            url: '/validate.aspx?token=' + token,
+                            method: 'GET',
+                            success: function(response) {
+                                // Display the response on the page
+                                $("#responseText").text(response);
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error responses
+                                console.error("Error:", error);
+                                $("#responseText").text("Error occurred. Please try again.");
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>reCAPTCHA v3 Validation</h1>
+<button id="validateButton">Validate reCAPTCHA</button>
+<div id="responseText"></div>
+</body>
+</html>

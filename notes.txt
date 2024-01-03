@@ -1,0 +1,5 @@
+﻿
+Use this site key in the HTML code your site serves to users.
+6LciI0QpAAAAAEocGXwQxLoUYuNJYdDNy3N2HEwm
+Use this secret key for communication between your site and reCAPTCHA.
+6LciI0QpAAAAAEAviIIE7oPx13F0K3NX35evxT5H
