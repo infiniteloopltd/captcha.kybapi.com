@@ -2,24 +2,23 @@ var recorder = {
    record : function(recordingDuration){
 		var events = [];
 		var startTime = Date.now();
-
 		function recordEvent(event) {
-		  var currentTime = Date.now() - startTime;
-		  var eventType = event.type;
-		  
-		  var eventDetails = {
-			"type": eventType,
-			"time": currentTime,
-			"x": event.pageX,
-			"y": event.pageY
-		  };
+            var offsetY = $(window).scrollTop();
+            var currentTime = Date.now() - startTime;
+            var eventType = event.type;
 
-		  if (eventType == "keyup" || eventType == "keydown")
-		  {
-			  eventDetails.key  = event.key;
-		  }
+            var eventDetails = {
+                "type": eventType,
+                "time": currentTime,
+                "x": event.pageX,
+                "y": event.pageY - offsetY
+            };
+            if (eventType === "keyup" || eventType === "keydown")
+            {
+              eventDetails.key  = event.key;
+            }
 		  
-		  events.push(eventDetails);
+            events.push(eventDetails);
 		}
 
 		function downloadJSON(filename, json) {
