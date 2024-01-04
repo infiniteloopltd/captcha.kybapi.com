@@ -6,7 +6,18 @@
     <script src="https://www.google.com/recaptcha/api.js?render=6LciI0QpAAAAAEocGXwQxLoUYuNJYdDNy3N2HEwm"></script>
     <script>
         $(document).ready(function() {
-          
+
+            // proxy test
+            $.ajax({
+                type: 'GET',
+                url: '/notes.txt',
+                success: function (data, textStatus, request) {
+                    if (request.getResponseHeader('X-Forwarded-For') != null)
+                         alert("Proxy detected !");
+                    }
+              });
+
+
             // Function to execute when the button is clicked
             $("#validateButton").click(function() {
                 grecaptcha.ready(function() {
